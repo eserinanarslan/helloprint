@@ -1,0 +1,15 @@
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+###Virtual Enviroments###
+venv/*
+temp/*
+
+###Source Data###
+data/*
+
+###SQLITE DB Files###
+sqlite/db/*
