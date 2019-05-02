@@ -10,9 +10,6 @@ import sqlite3
 import httpagentparser
 import src.utils as utils
 
-import concurrent.futures
-import joblib
-
 def create_connection():
     """ create a database connection to a SQLite database """
     try:
@@ -25,6 +22,14 @@ def create_connection():
     return None
 def create_requests_table(db):
     conf = utils.loadConfig()
+    drop_requests_table_sql = conf["SQL"]["DROP_REQUESTS_TABLE"]
+
+    try:
+        c = db.cursor()
+        c.execute(drop_requests_table_sql)
+    except Error as e:
+        print(e)
+
     create_requests_table_sql = conf["SQL"]["CREATE_REQUESTS_TABLE"]
 
     try:
@@ -32,6 +37,7 @@ def create_requests_table(db):
         c.execute(create_requests_table_sql)
     except Error as e:
         print(e)
+
 def insert_request(db, request):
     conf = utils.loadConfig()
     insert_requests_sql = conf["SQL"]["INSERT_REQUESTS"]
@@ -52,6 +58,11 @@ def insert_request(db, request):
     else:
         user_agent_os = ''
 
+    if 'email' in request:
+        email = request['email']
+    else:
+        email = 'no-email'
+
     if 'browser' in user_agent:
         user_agent_browser = user_agent['browser']['name']
         user_agent_browser_version = user_agent['browser']['version']
@@ -61,6 +72,7 @@ def insert_request(db, request):
 
     row = (
         request['user_name'],
+        email,
         request['request_id'],
         request['environment'],
         request['store'],
@@ -83,7 +95,12 @@ def insert_request(db, request):
     try:
         cur = db.cursor()
         cur.execute(insert_requests_sql, row)
-        return cur.lastrowid
     except Exception as err:
-        print('INSERT_REQUESTS_SQL failed: %s\nError : %s ' %(insert_requests_sql, str(err)))
+        print('INSERT_REQUESTS_SQL failed: %s\nError : %s ' % (insert_requests_sql, str(err)))
+
         pass
+
+    if cur:
+        return cur.lastrowid
+    else:
+        return False

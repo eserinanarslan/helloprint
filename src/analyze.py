@@ -87,6 +87,6 @@ def analyze_visits(db):
 
 def report_visits(db):
     data = analyze_visits(db)
-    print('Visit counts by date')
+    print('Visit counts by date for last 30 days')
     for row in data:
         print(row[1], '  ', row[0])

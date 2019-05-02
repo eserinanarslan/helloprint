@@ -7,6 +7,7 @@ Created on Tuesday April 30 2019
 
 import os
 import json
+import sqlite3
 import src.utils as utils
 import src.dbutils as dbutils
 
@@ -15,28 +16,56 @@ from multiprocessing import pool
 files = []
 
 db = dbutils.create_connection()
-print("****** DB Connection Created.******")
+print("****** DB Connection Created VOL1.******")
 dbutils.create_requests_table(db)
+
+print("LEN OF FILES : ", len(files))
+
+for counter in range(len(files)):
+    if counter % 10000 == 9999:
+        db.close()
+        db = dbutils.create_connection()
+        print("********************************************* DB Connection Created VOL1.******")
+    else:
+        db = dbutils.create_connection()
+
+#dbutils.create_requests_table(db)
 
 def process_line(line):
     return line
 
 def get_lines(file_name):
-
-    conf = utils.loadConfig()
-    pool_size = conf["THREAD_POOL_SIZE"]
-    thread_pool_size = int(pool_size)
-
-    thread_pool = pool.ThreadPool(thread_pool_size)
+    list = []
     with open(file_name) as source_file:
-        # chunk the work into batches of 4 lines at a time
-        results = thread_pool.map(process_line, source_file, 4)
+        for row in source_file:
+            list.append(json.loads(row))
 
-        for row in results:
-            dbutils.insert_request(db, json.loads(row))
+    return list
 
-        print(results)
-    thread_pool.close()
+    # key = 0
+    # for row in results:
+    #     if(key % 10000 == 9999):
+    #         db.commit()
+    #
+    #     with open(row) as f:
+    #         for messages in f.readlines():
+    #             dbutils.insert_request(db, json.loads(messages))
+    #
+    #     key += 1
+    #
+    # db.commit()
+
+def add_to_database(list):
+    key = 0
+    for file in list:
+        if(key % 100 == 99):
+            db.commit()
+        for row in file:
+            if row:
+                dbutils.insert_request(db, row)
+        key += 1
+
+    db.commit()
 
 def get_files():
     conf = utils.loadConfig()
@@ -51,5 +80,3 @@ def get_files():
             if '.json' in file and "facebook-backup" not in r:
                 files.append(os.path.join(r, file))
     return files
-
-
