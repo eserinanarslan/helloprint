@@ -19,7 +19,7 @@ def analyze_os(db):
 
 def report_os(db):
     os_data = analyze_os(db)
-    print('Most used operating systems')
+    #print('Most used operating systems')
     return os_data
 ################ ANALYZE BROWSER ####################
 
@@ -34,13 +34,8 @@ def analyze_browser(db):
 
 def report_browser(db):
     browser_data = analyze_browser(db)
-    print('Most used browsers')
+    #print('Most used browsers')
     return browser_data
-    """
-    for row in data:
-        print(row[0], '  ', row[1])
-        return row[0], '  ', row[1]
-    """
 
 ################ ANALYZE PATHS ####################
 
@@ -55,7 +50,7 @@ def analyze_paths(db):
 
 def report_paths(db):
     paths_data = analyze_paths(db)
-    print('Most visited paths')
+    #print('Most visited paths')
     return paths_data
 
 ################ ANALYZE REFERRES ####################
@@ -71,7 +66,7 @@ def analyze_referrers(db):
 
 def report_referrers(db):
     referrers_data = analyze_referrers(db)
-    print('Top referrers')
+    #print('Top referrers')
     return referrers_data
 
 ################ ANALYZE VISITS ####################
@@ -87,5 +82,5 @@ def analyze_visits(db):
 
 def report_visits(db):
     visits_data = analyze_visits(db)
-    print('Visit counts by date for last 30 days')
+    #print('Visit counts by date for last 30 days')
     return visits_data

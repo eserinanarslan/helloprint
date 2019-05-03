@@ -2,14 +2,14 @@
   "JSON_PATH":"data/requests",
   "DB_NAME":"sqlite/db/sqlite.db",
   "SQL": {
-    "DROP_REQUESTS_TABLE": "DROP TABLE IF EXISTS `requests`",
+    "DROP_REQUESTS_TABLE": "DROP TABLE IF EXISTS `requests`;",
     "CREATE_REQUESTS_TABLE":"CREATE TABLE `requests` (`id` INTEGER PRIMARY KEY AUTOINCREMENT,`user_name` TEXT,'email' TEXT,`request_id` TEXT,`environment` TEXT,`store` TEXT,`time` DATE,`client_ip` TEXT,`host` TEXT,`method` TEXT,`params_module` TEXT,`params_controller` TEXT,`params_action` TEXT,`params_id` TEXT,`params_oauth_proxy_redirect_host` TEXT,`params_date_count` INTEGER,`params_date_unit` TEXT,`params_date_start` DATE,`params_date_end` DATE,`params_users` TEXT,`params_resource_group` TEXT,`params_sort_measure` TEXT,`path` TEXT,`referrer` TEXT,`ua_os` TEXT,`ua_browser_name` TEXT,`ua_browser_version` TEXT);",
     "INSERT_REQUESTS":"INSERT INTO requests (user_name, email, request_id, environment, store, time, client_ip, host, method, params_module, params_controller, params_action, params_id, params_oauth_proxy_redirect_host,params_date_count,params_date_unit, params_date_start,params_date_end,params_users, params_resource_group,params_sort_measure, path, referrer, ua_os, ua_browser_name, ua_browser_version) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);",
-    "ANALYZE_OS":"SELECT IFNULL(ua_os,'N/A') AS ua_os, COUNT(*) AS os_count FROM requests GROUP BY ua_os ORDER BY 2 DESC LIMIT 10;",
-    "ANALYZE_BROWSER":"SELECT IFNULL(ua_browser_name, 'N/A') AS ua_browser_name, COUNT(*) AS browser_count FROM requests GROUP BY ua_browser_name ORDER BY 2 DESC LIMIT 10;",
-    "ANALYZE_PATHS":"SELECT IFNULL(\"path\",'N/A') AS \"path\", COUNT(*) AS path_count FROM requests GROUP BY \"path\" ORDER BY 2 DESC LIMIT 10;",
-    "ANALYZE_REFERRERS":"SELECT IFNULL(referrer, 'N/A') AS referrer, COUNT(*) AS referrer_count FROM requests WHERE referrer IS NOT NULL AND referrer != \"\" GROUP BY referrer ORDER BY 2 DESC LIMIT 10;",
-    "ANALYZE_VISITS":"SELECT COUNT(*) AS request_count, date(time) AS date_accessed FROM requests GROUP BY date_accessed ORDER BY 2 DESC LIMIT 30;"
+    "ANALYZE_OS":"SELECT CASE WHEN ua_os = '' THEN 'N/A' ELSE UA_OS END AS UA_OS, COUNT(*) AS os_count FROM requests GROUP BY CASE WHEN ua_os = '' THEN 'N/A' ELSE UA_OS END ORDER BY 2 DESC LIMIT 10;",
+    "ANALYZE_BROWSER":"SELECT CASE WHEN ua_browser_name = '' THEN 'N/A' ELSE ua_browser_name END AS ua_browser_name, COUNT(*) AS browser_count FROM requests GROUP BY CASE WHEN ua_browser_name = '' THEN 'N/A' ELSE ua_browser_name END ORDER BY 2 DESC LIMIT 10;",
+    "ANALYZE_PATHS":"SELECT CASE WHEN \"path\" = '' THEN 'N/A' ELSE \"path\" END AS \"path\", COUNT(*) AS path_count FROM requests GROUP BY CASE WHEN \"path\" = '' THEN 'N/A' ELSE \"path\" END ORDER BY 2 DESC LIMIT 10;",
+    "ANALYZE_REFERRERS":"SELECT CASE WHEN referrer IN ('', '0') THEN 'N/A' ELSE referrer END AS referrer, COUNT(*) AS referrer_count FROM requests GROUP BY CASE WHEN referrer IN ('', '0') THEN 'N/A' ELSE referrer END ORDER BY 2 DESC LIMIT 10;",
+    "ANALYZE_VISITS":"SELECT COUNT(*) AS request_count, date(time) AS date_accessed FROM requests GROUP BY date_accessed ORDER BY 1 DESC LIMIT 30;"
   },
   "THREAD_POOL_SIZE":"4"
 }

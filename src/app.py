@@ -5,76 +5,44 @@ Created on Tuesday April 30 2019
 @author: eser.arslan
 
 """
+import datetime
+
 import src.readfiles as readfiles
 import src.dbutils as dbutils
-import src.analyze as analyze
+import src.createreport as report
 import multiprocessing as mp
 
 from multiprocessing import pool
 
-db = dbutils.create_connection()
-print("****** DB Connection Created.******")
-dbutils.create_requests_table(db)
+def app():
+    start_time = datetime.datetime.now()
 
-files = readfiles.get_files()
+    db = dbutils.create_connection()
+    print("****** DB Connection Created.******")
+    dbutils.create_requests_table(db)
 
-print("LEN OF FILES-1 : ", len(files))
+    table_creation_finish = datetime.datetime.now()
+    table_creation_time = table_creation_finish - start_time
 
-print(files)
-process_pool = pool.Pool(mp.cpu_count())
-json_list = process_pool.map(readfiles.get_lines, files)
-process_pool.close()
+    get_file_start_time = datetime.datetime.now()
+    files = readfiles.get_files()
+    get_file_finish_time = datetime.datetime.now()
+    get_file_time = get_file_finish_time - get_file_start_time
 
-readfiles.add_to_database(json_list)
+    process_pool = pool.Pool(mp.cpu_count())
+    get_line_start_time = datetime.datetime.now()
+    json_list = process_pool.map(readfiles.get_lines, files)
+    get_line_finish_time = datetime.datetime.now()
+    get_line_time = get_line_finish_time - get_line_start_time
+    process_pool.close()
 
-report_attributes = []
+    db_insert_start_time = datetime.datetime.now()
+    readfiles.add_to_database(json_list)
+    db.commit()
+    db_insert_finish_time = datetime.datetime.now()
+    db_insert_time = db_insert_finish_time - db_insert_start_time
 
-operating_systems = analyze.report_os(db)
-report_attributes.append("\n***Most used operating systems***\n")
-for row in operating_systems:
-        str_row = str(str(row[0])+'  '+str(row[1]))
-        report_attributes.append(str_row)
-print("\n")
+    analyze_report = report.create_analyze_report(start_time,table_creation_time, get_file_time,get_line_time, db_insert_time)
 
-browser = analyze.report_browser(db)
-report_attributes.append("\n***Most used browsers***\n")
-for row in browser:
-        str_row = str(str(row[0])+'  '+str(row[1]))
-        report_attributes.append(str_row)
-print("\n")
-
-referrers = analyze.report_referrers(db)
-report_attributes.append("\n***Top referrers***\n")
-for row in referrers:
-        str_row = str(str(row[0])+'  '+str(row[1]))
-        report_attributes.append(str_row)
-print("\n")
-
-paths = analyze.report_paths(db)
-report_attributes.append("\n***Most visited paths***\n")
-for row in paths:
-        str_row = str(str(row[0])+'  '+str(row[1]))
-        report_attributes.append(str_row)
-print("\n")
-
-visitor_count = analyze.report_visits(db)
-report_attributes.append("\n***Visit counts by date for last 30 days***\n")
-for row in visitor_count:
-        str_row = str(str(row[0])+'  '+str(row[1]))
-        report_attributes.append(str_row)
-print("\n")
-
-db.close()
-
-print("****** DB Connection Closed.******")
-
-report = open("report/HelloPrintReport.txt","w+")
-report.writelines(report_attributes)
-report.close()
-
-#for att in report_attributes:
-#    report.write(att)
-#    print("%s is writen to report !\n\n", att)
-
-
-print("Report process finished !")
+if __name__ == "__main__":
+    app()

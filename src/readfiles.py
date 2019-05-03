@@ -48,7 +48,6 @@ def add_to_database(list):
             if row:
                 dbutils.insert_request(db, row)
         key += 1
-
     db.commit()
 
 def get_files():
