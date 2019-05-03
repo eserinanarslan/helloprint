@@ -46,7 +46,11 @@ You can observe the process while the code is running.
 2)In second step,You can open terminal and under "HelloPrint" project, run < watch -n 3 "du -hs sqlite" >.This watch mode shows you DB size in three seconds period.
 3)After execution, you can execute your SQL statements by following below instructions.
   a) Under HelloPrint/sqlite/db path, you can run "sqlite3 sqlite.db". It is ready for execution.
-  
+
+****************************************************************************************************************************
+
+You can also analyze results report folder after first execution. It includes favourite and command paramaters results. Moreover, process execution times are writen in this TXT file which is called "HelloPrintReport.txt"
+
  NOTES:I wanted to create a unique constraint when creating a database. First I wanted to specify the "request_id" parameter as unique constraint. Then I observed that request_id is not unique. I didn't want to deal any more because the parameter that should be unique like "token" is not included in every file.
 
 
