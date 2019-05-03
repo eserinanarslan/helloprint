@@ -83,6 +83,16 @@ def insert_request(db, request):
     else:
         params_sort_measure = ''
 
+    if 'token' in request['params']:
+        params_token = request['params']['token']
+    else:
+        params_token = ''
+
+    if 'divID' in request['params']:
+        params_divID = request['params']['divID']
+    else:
+        params_divID = ''
+
     if 'oauth_proxy_redirect_host' in request['params']:
         params_oauth_proxy_redirect_host = request['params']['oauth_proxy_redirect_host']
     else:
@@ -127,12 +137,16 @@ def insert_request(db, request):
         params_resource_group,
         params_sort_measure,
         params_oauth_proxy_redirect_host,
+        params_divID,
+        params_token,
         request['path'],
         request['referrer'],
         user_agent_os,
         user_agent_browser,
         user_agent_browser_version
     )
+
+    print(row)
 
     try:
         cur = db.cursor()
