@@ -17,7 +17,7 @@ db = dbutils.create_connection()
 print("****** DB Connection Created VOL1.******")
 dbutils.create_requests_table(db)
 
-print("LEN OF FILES : ", len(files))
+#print("LEN OF FILES : ", len(files))
 
 for counter in range(len(files)):
     if counter % 10000 == 9999:

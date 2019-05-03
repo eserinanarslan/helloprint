@@ -134,8 +134,6 @@ def insert_request(db, request):
         user_agent_browser_version
     )
 
-    print(request['request_id'])
-
     try:
         cur = db.cursor()
         cur.execute(insert_requests_sql, row)

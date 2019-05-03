@@ -51,19 +51,19 @@ def create_analyze_report(start_time,table_creation_time, get_file_time,get_line
 
     print("****** DB Connection Closed.******")
 
-    str_1 = ("\n\nTable creation time           = " + table_creation_time + "\n")
+    str_1 = ("\n\nTable creation time           = " + str(table_creation_time) + "\n")
     report_attributes.append(str_1)
-    str_2 = ("\n\nCollecting files time         = " + get_file_time + "\n")
+    str_2 = ("\n\nCollecting files time         = " + str(get_file_time) + "\n")
     report_attributes.append(str_2)
-    str_3 = ("\n\nReading JSON messages time    = " + get_line_time + "\n")
+    str_3 = ("\n\nReading JSON messages time    = " + str(get_line_time) + "\n")
     report_attributes.append(str_3)
-    str_4 = ("\n\nSQLITE insertion time         = " + db_insert_time + "\n")
+    str_4 = ("\n\nSQLITE insertion time         = " + str(db_insert_time) + "\n")
     report_attributes.append(str_4)
 
     finish_time = datetime.datetime.now()
     process_time = finish_time - start_time
 
-    str_5 =("\n\nEnd to End process time        = " + process_time + "\n")
+    str_5 = ("\n\nEnd to End process time        = " + str(process_time) + "\n")
     report_attributes.append(str_5)
 
     report = open("report/HelloPrintReport.txt", "w+")
