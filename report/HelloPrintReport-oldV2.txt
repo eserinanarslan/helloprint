@@ -1,0 +1,94 @@
+
+
+***Most used operating systems***
+Macintosh  1502451
+Windows  622456
+iOS  114853
+Linux  64317
+N/A  21961
+ChromeOS  93
+
+
+***Most used browsers***
+Chrome  1312604
+Safari  678919
+Firefox  308158
+N/A  20067
+Opera  4459
+MSEdge  945
+Microsoft Internet Explorer  779
+ChromeiOS  200
+
+
+***Top referrers***
+https://bi.petsdeli.de/  1370590
+https://bi.petsdeli.de/dwh/reports/view/id/overview-sales-dashboard  358457
+https://petsdeli.bi.project-a.com/  76162
+https://bi.petsdeli.de/dwh/data-sets/view/?new-query=orders  46612
+https://dwh.bi.petsdeli.de/  38386
+N/A  33996
+https://petsdeli.bi.project-a.com/?  31886
+https://bi.petsdeli.de/dwh/reports/view/id/marketing-overview  25821
+https://bi.petsdeli.de/dwh/data-sets/view/?new-query=sold-products  25296
+https://bi.petsdeli.de/dwh/reports/view/id/overview-investor-dashboard  22492
+
+
+***Most visited paths***
+/dwh/reports/data/  2040266
+/dwh/data-sets/get-distribution-chart  83452
+/  29715
+/dwh/data-sets/get-preview  24153
+/dwh/data-sets/get-filter-selectivity  19866
+/dwh/saiku/authorize  19668
+/dwh/data-sets/view/  18808
+/dwh/data-sets/get-row-count-with-pagination  12448
+/dwh/data-sets/auto-complete  10819
+/campaign-tree/index/search  7727
+
+
+***Visit counts by date for last 30 days***
+17444  2016-11-01
+16817  2016-10-24
+16795  2016-11-21
+16540  2016-10-25
+16239  2016-10-21
+15427  2016-10-20
+13879  2016-11-07
+13462  2016-10-28
+13351  2016-10-31
+13045  2016-09-29
+12948  2016-09-12
+12817  2016-09-05
+12693  2016-12-01
+12688  2016-10-18
+12412  2016-09-14
+12357  2016-11-30
+12336  2016-10-26
+12249  2016-09-19
+12147  2016-11-02
+12123  2016-11-03
+12101  2016-09-13
+11998  2016-09-20
+11895  2016-09-26
+11579  2016-11-04
+11473  2016-11-24
+11447  2016-10-05
+11447  2016-11-28
+11393  2016-07-19
+11286  2016-09-01
+11146  2016-09-30
+
+
+Table creation time           = 0:00:00.002433
+
+
+Collecting files time         = 0:00:00.086492
+
+
+Reading JSON messages time    = 0:01:48.642870
+
+
+SQLITE insertion time         = 0:14:13.591039
+
+
+End to End process time        = 0:16:18.122460

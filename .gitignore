@@ -9,10 +9,7 @@ venv/*
 temp/*
 
 ###Source Data###
-data/*
-
-###Report File###
-report/*
+data/requests/*
 
 ###SQLITE DB Files###
 sqlite/db/*
