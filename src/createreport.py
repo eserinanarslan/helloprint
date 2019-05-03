@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tuesday April 30 2019
+Created on Thursday May 02 2019
 
 @author: eser.arslan
 
@@ -10,6 +10,7 @@ import datetime
 import src.dbutils as dbutils
 import src.analyze as analyze
 
+#   Create Connection and main table
 db = dbutils.create_connection()
 print("****** DB Connection Created For Reporting.******")
 dbutils.create_requests_table(db)
@@ -22,6 +23,7 @@ def append_report(report_attributes, file_name):
 def create_analyze_report(start_time,table_creation_time, get_file_time,get_line_time, db_insert_time):
     report_attributes = []
 
+#   Preparing report parametres
     operating_systems = analyze.report_os(db)
     report_attributes.append("\n\n***Most used operating systems***\n")
     append_report(report_attributes, operating_systems)

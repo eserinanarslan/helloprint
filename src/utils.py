@@ -11,6 +11,7 @@ from itertools import islice
 
 config=None
 
+#   Load config to get parameters
 def loadConfig(file='config/config.json'):
     global config
     if(config==None):
@@ -24,6 +25,7 @@ def loadConfig(file='config/config.json'):
                 config = json.load(f)
     return config
 
+#   Create chunk generator fro multiprocessing
 def dict_chunk_generator(data, SIZE=10000):
     it = iter(data)
     for i in range(0, len(data), SIZE):

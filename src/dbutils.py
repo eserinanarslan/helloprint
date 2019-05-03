@@ -10,6 +10,7 @@ import sqlite3
 import httpagentparser
 import src.utils as utils
 
+#   Create COnnection
 def create_connection():
     """ create a database connection to a SQLite database """
     try:
@@ -20,6 +21,7 @@ def create_connection():
         print(e)
     return None
 
+#   Create requests table
 def create_requests_table(db):
     conf = utils.loadConfig()
     drop_requests_table_sql = conf["SQL"]["DROP_REQUESTS_TABLE"]
@@ -38,6 +40,7 @@ def create_requests_table(db):
     except Error as e:
         print(e)
 
+#   Insert lines to DB from JSON files
 def insert_request(db, request):
     conf = utils.loadConfig()
     insert_requests_sql = conf["SQL"]["INSERT_REQUESTS"]

@@ -13,12 +13,14 @@ import src.dbutils as dbutils
 
 files = []
 
+#   Create Connection and main table
 db = dbutils.create_connection()
 print("****** DB Connection Created VOL1.******")
 dbutils.create_requests_table(db)
 
 #print("LEN OF FILES : ", len(files))
 
+# Refresh DB Connection
 for counter in range(len(files)):
     if counter % 10000 == 9999:
         db.close()
@@ -31,6 +33,7 @@ for counter in range(len(files)):
 def process_line(line):
     return line
 
+#   Read json messages into every .json files
 def get_lines(file_name):
     list = []
     with open(file_name) as source_file:
@@ -39,9 +42,11 @@ def get_lines(file_name):
 
     return list
 
+#   Create DB Connection and insert data to db from JSOn files
 def add_to_database(list):
     key = 0
     for file in list:
+        #Commit Database in each 100 data
         if(key % 100 == 99):
             db.commit()
         for row in file:
@@ -50,6 +55,7 @@ def add_to_database(list):
         key += 1
     db.commit()
 
+#   Read .json files into different folder
 def get_files():
     conf = utils.loadConfig()
     json_path = conf["JSON_PATH"]
