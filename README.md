@@ -51,6 +51,8 @@ You can observe the process while the code is running.
 
 You can also analyze results report folder after first execution. It includes favourite and command paramaters results. Moreover, process execution times are writen in this TXT file which is called "HelloPrintReport.txt"
 
- NOTES:I wanted to create a unique constraint when creating a database. First I wanted to specify the "request_id" parameter as unique constraint. Then I observed that request_id is not unique. I didn't want to deal any more because the parameter that should be unique like "token" is not included in every file.
+ NOTE-1 :I wanted to create a unique constraint when creating a database. First I wanted to specify the "request_id" parameter as unique constraint. Then I observed that request_id is not unique. I didn't want to deal any more because the parameter that should be unique like "token" is not included in every file.
+ 
+ NOTE-2 :I didn't need to install the facebook-backup file because when I reviewed the file, I noticed that the backup was successful. For this reason, "Back-up" file has not been uploaded to the database.
 
 
