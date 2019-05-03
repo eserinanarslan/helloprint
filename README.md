@@ -6,6 +6,10 @@ HelloPrint project is a streaming data architecture that collects events from JS
 
 When the project was developed, it was observed that the parameters of continuous data were increased and the data structure was developed accordingly.
 
+Architucture:
+
+
+
 Tool Used:
 Pycharm Community 2019.1
 SQLITE
@@ -21,7 +25,7 @@ pip install -r requirement.txt
 
 - Secondly you have to put source json files under with below hierarchy:
 
-
+![Screen Shot 2019-05-03 at 19 46 42](https://user-images.githubusercontent.com/25620152/57152501-5ce11b80-6ddc-11e9-8681-9c7f06b7c64a.png)
 
 - Then you can app.py file.
 Python src/app.py
