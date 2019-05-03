@@ -8,7 +8,7 @@ When the project was developed, it was observed that the parameters of continuou
 
 Architucture:
 
-
+<img width="518" alt="Screen Shot 2019-05-03 at 19 49 25" src="https://user-images.githubusercontent.com/25620152/57152609-a3cf1100-6ddc-11e9-96bf-77e5f0bb31b4.png">
 
 Tool Used:
 Pycharm Community 2019.1
