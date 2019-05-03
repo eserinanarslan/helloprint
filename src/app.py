@@ -3,8 +3,8 @@
 Created on Tuesday April 30 2019
 
 @author: eser.arslan
-"""
 
+"""
 import src.readfiles as readfiles
 import src.dbutils as dbutils
 import src.analyze as analyze
@@ -30,17 +30,32 @@ process_pool.close()
 
 readfiles.add_to_database(json_list)
 
-analyze.report_os(db)
+report_attributes = []
+operating_systems = analyze.report_os(db)
+report_attributes.append(operating_systems)
 print("\n")
-analyze.report_browser(db)
+browser = analyze.report_browser(db)
+report_attributes.append(browser)
 print("\n")
-analyze.report_referrers(db)
+referrers = analyze.report_referrers(db)
+report_attributes.append(referrers)
 print("\n")
-analyze.report_paths(db)
+paths = analyze.report_paths(db)
+report_attributes.append(paths)
 print("\n")
-analyze.report_visits(db)
+visitor_count = analyze.report_visits(db)
+report_attributes.append(visitor_count)
 print("\n")
+
+
 
 db.close()
 print("****** DB Connection Closed.******")
 
+report = open("report/HelloPrintReport.txt","w+")
+
+for att in report_attributes:
+    report.write(att)
+    print("%s is writen to report !", att)
+
+print("Report process finished !")

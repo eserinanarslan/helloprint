@@ -44,14 +44,49 @@ def insert_request(db, request):
     user_agent = httpagentparser.detect(request['user_agent'])
 
     if 'id' in request['params']:
-        id = request['params']['id']
+        params_id = request['params']['id']
     else:
-        id = ''
+        params_id = ''
+
+    if 'date-count' in request['params']:
+        params_date_count = request['params']['date-count']
+    else:
+        params_date_count = ''
+
+    if 'date-unit' in request['params']:
+        params_date_unit = request['params']['date-unit']
+    else:
+        params_date_unit = ''
+
+    if 'date-start' in request['params']:
+        params_date_start = request['params']['date-start']
+    else:
+        params_date_start = ''
+
+    if 'date-end' in request['params']:
+        params_date_end = request['params']['date-end']
+    else:
+        params_date_end = ''
+
+    if 'users' in request['params']:
+        params_users = request['params']['users']
+    else:
+        params_users = ''
+
+    if 'resource-group' in request['params']:
+        params_resource_group = request['params']['resource-group']
+    else:
+        params_resource_group = ''
+
+    if 'sort-measure' in request['params']:
+        params_sort_measure = request['params']['sort-measure']
+    else:
+        params_sort_measure = ''
 
     if 'oauth_proxy_redirect_host' in request['params']:
-        oauth_proxy_redirect_host = request['params']['oauth_proxy_redirect_host']
+        params_oauth_proxy_redirect_host = request['params']['oauth_proxy_redirect_host']
     else:
-        oauth_proxy_redirect_host = ''
+        params_oauth_proxy_redirect_host = ''
 
     if 'os' in user_agent:
         user_agent_os = user_agent['os']['name']
@@ -83,14 +118,23 @@ def insert_request(db, request):
         request['params']['module'],
         request['params']['controller'],
         request['params']['action'],
-        id,
-        oauth_proxy_redirect_host,
+        params_id,
+        params_date_count,
+        params_date_unit,
+        params_date_start,
+        params_date_end,
+        params_users,
+        params_resource_group,
+        params_sort_measure,
+        params_oauth_proxy_redirect_host,
         request['path'],
         request['referrer'],
         user_agent_os,
         user_agent_browser,
         user_agent_browser_version
     )
+
+    print(request['request_id'])
 
     try:
         cur = db.cursor()

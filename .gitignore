@@ -11,5 +11,8 @@ temp/*
 ###Source Data###
 data/*
 
+###Report File###
+report/*
+
 ###SQLITE DB Files###
 sqlite/db/*
