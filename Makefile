@@ -2,14 +2,16 @@ ifndef VERBOSE
 .SILENT:
 endif
 
+SHELL := '.'
+
 execute-project:
 	$(MAKE) deploy-requirements
 	$(MAKE) execute-code
 
 deploy-requirements:
-	pip install -r requirements.txt
+	SHELL pip install -r requirements.txt
 
 execute-code:
-	python app.py
+	SHELL python src/app.py
 
 

@@ -18,8 +18,8 @@ def create_connection():
         return conn
     except Error as e:
         print(e)
-
     return None
+
 def create_requests_table(db):
     conf = utils.loadConfig()
     drop_requests_table_sql = conf["SQL"]["DROP_REQUESTS_TABLE"]
