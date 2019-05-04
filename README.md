@@ -43,7 +43,9 @@ Python src/app.py
 You can observe the process while the code is running.
 
 1) In first step (reading files and getingt lines) On your compıuter, you can run < HTOP > command to watch your machine cores' load.
+
 2)In second step,You can open terminal and under "HelloPrint" project, run < watch -n 3 "du -hs sqlite" >.This watch mode shows you DB size in three seconds period.
+
 3)After execution, you can execute your SQL statements by following below instructions.
   a) Under HelloPrint/sqlite/db path, you can run "sqlite3 sqlite.db". It is ready for execution.
 
